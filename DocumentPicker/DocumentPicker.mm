@@ -1,6 +1,5 @@
 #include <QtGui>
 #include <QtQuick>
-#include <QPointer>
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -9,7 +8,6 @@
 
 #include "DocumentPicker.h"
 
-static QPointer<DocumentPicker> m_Instance;
 
 @interface DocumentPickerDelegate: NSObject <UINavigationControllerDelegate, UIDocumentPickerDelegate>
 {
@@ -36,7 +34,7 @@ static QPointer<DocumentPicker> m_Instance;
         for (NSURL* obj in urls)
         {
             NSString *myString = [obj absoluteString];
-            Q_EMIT m_Instance->documentSelected(QString::fromNSString(myString));
+            Q_EMIT m_DocumentPicker->documentSelected(QString::fromNSString(myString));
             break;
         }
 //                NSLog(@"%@",urls);
@@ -57,7 +55,6 @@ void DocumentPicker::show(void)
 
 DocumentPicker::DocumentPicker()
 {
-    m_Instance = this;
     m_Delegate = [[DocumentPickerDelegate alloc] initWithObject:this];
 }
 
