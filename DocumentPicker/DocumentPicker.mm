@@ -60,3 +60,8 @@ DocumentPicker::DocumentPicker()
     m_Instance = this;
     m_Delegate = [[DocumentPickerDelegate alloc] initWithObject:this];
 }
+
+DocumentPicker::~DocumentPicker()
+{
+    [m_Delegate release];
+}

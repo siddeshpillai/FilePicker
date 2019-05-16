@@ -9,7 +9,7 @@ class DocumentPicker : public QObject
 
 public:
     explicit DocumentPicker();
-    ~DocumentPicker() {}
+    ~DocumentPicker();
 
 public slots:
     void show(void);
